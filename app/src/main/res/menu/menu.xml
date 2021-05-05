@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="Calendar" />
+    <item
+        android:id="@+id/Home"
+        android:icon="@drawable/ic_baseline_remove_red_eye_24"
+        android:title="Home" />
+    <item
+        android:id="@+id/Profile"
+        android:icon="@drawable/ic_baseline_self_improvement_24"
+        android:title="Profile" />
+
+</menu>
