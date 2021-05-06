@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,15 +44,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton lotusButton = findViewById(R.id.lotus_button);
+        lotusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Meditate.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
-    public void meditate(View view)
-    {
-        Intent i=new Intent(this,Meditate.class);
+    // ART: xrysa to bazo se comment giati an katalaba kala, apla itheles na pas sto meditate activity.
+    // prosthesa event listener. Opote nmz den xreiazetai to parakato.
+//    public void meditate(View view)
+//    {
+//        Intent i=new Intent(this,Meditate.class);
+//
+//        startActivity(i);
+//    }
 
-        startActivity(i);
-    }
     /*
     // equivalent to hamburger menu -> no no
     @Override
