@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
@@ -40,8 +41,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
     }
 
+    public void meditate(View view)
+    {
+        Intent i=new Intent(this,Meditate.class);
+
+        startActivity(i);
+    }
     /*
     // equivalent to hamburger menu -> no no
     @Override
