@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.meditation.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Profile extends AppCompatActivity {
@@ -41,5 +44,15 @@ public class Profile extends AppCompatActivity {
                 return false;
             }
         });
+
+        TextView changeAccount = findViewById(R.id.change_account);
+        changeAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Welcome.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

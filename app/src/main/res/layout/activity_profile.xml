@@ -155,6 +155,7 @@
                     android:fontFamily="cursive"
                     android:text="Set Reminder"
                     android:textSize="30sp"
+                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton" />
@@ -177,12 +178,14 @@
                     android:src="@drawable/ic_baseline_supervisor_account_24" />
 
                 <TextView
+                    android:id="@+id/change_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:fontFamily="cursive"
                     android:text="Change Account"
                     android:textSize="30sp"
+                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton" />
@@ -210,6 +213,7 @@
                     android:fontFamily="cursive"
                     android:text="Change Password"
                     android:textSize="30sp"
+                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton" />
