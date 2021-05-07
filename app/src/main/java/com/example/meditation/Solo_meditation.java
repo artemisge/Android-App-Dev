@@ -39,5 +39,6 @@ public class Solo_meditation extends AppCompatActivity {
                 return false;
             }
         });
+
     }
 }

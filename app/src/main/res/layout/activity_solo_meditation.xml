@@ -8,6 +8,7 @@
 
 
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
         android:layout_width="match_parent"
