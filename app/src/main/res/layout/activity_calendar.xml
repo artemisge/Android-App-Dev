@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Calendar">
+
 
     <TextView
         android:id="@+id/activityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="124dp"
         android:background="#FFFFFF"
         android:fontFamily="cursive"
         android:text="Calendar"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lotus_button" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="43dp"
+        tools:layout_conversion_absoluteWidth="113dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@color/purple_200"
         app:itemIconTint="#fff"
         app:itemTextColor="#fff"
         app:menu="@menu/menu"
-        />
+        tools:layout_conversion_absoluteHeight="56dp"
+        tools:layout_conversion_absoluteWidth="411dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="790dp" />
 
-</RelativeLayout>
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activityTitle"
+        tools:layout_conversion_absoluteHeight="338dp"
+        tools:layout_conversion_absoluteWidth="348dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
