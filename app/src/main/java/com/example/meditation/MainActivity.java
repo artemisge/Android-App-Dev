@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         lotusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Meditate.class);
+                Intent intent = new Intent(MainActivity.this, activity_register.class); //meditate
                 startActivity(intent);
             }
         });

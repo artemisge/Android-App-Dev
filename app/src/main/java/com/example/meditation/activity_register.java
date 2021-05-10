@@ -23,7 +23,7 @@ public class activity_register extends AppCompatActivity {
         username=(EditText) findViewById(R.id.username);
         pwd=(EditText) findViewById(R.id.password2);
         repwd=(EditText) findViewById(R.id.repassword);
-        signup=(Button) findViewById(R.id.registerbtn);
+        Button signup=findViewById(R.id.registerbtn);
         signin=(Button) findViewById(R.id.login);
         db= new DBHelper(this);
 
