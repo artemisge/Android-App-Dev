@@ -16,4 +16,5 @@
     <string name="lotus_med">Lotus Meditation</string>
     <string name="register">Register</string>
     <string name="if_account">If you already have an account:</string>
+    <string name="login_head">Login to your account</string>
 </resources>

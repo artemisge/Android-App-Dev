@@ -24,7 +24,7 @@ public class activity_register extends AppCompatActivity {
         pwd=(EditText) findViewById(R.id.password2);
         repwd=(EditText) findViewById(R.id.repassword);
         Button signup=findViewById(R.id.registerbtn);
-        signin=(Button) findViewById(R.id.login);
+        Button signin= findViewById(R.id.login);
         db= new DBHelper(this);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class activity_register extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent i = new Intent(activity_register.this, LoginActivity.class);
                 startActivity(i);
             }
         });

@@ -3,6 +3,7 @@ package com.example.meditation;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         lotusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Meditate.class);
+                Intent intent = new Intent(MainActivity.this, activity_register.class);
                 startActivity(intent);
             }
         });
