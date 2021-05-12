@@ -169,13 +169,16 @@
                     android:src="@drawable/ic_baseline_edit_notifications_24" />
 
                 <TextView
+                    android:id="@+id/set_reminder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:clickable="true"
                     android:fontFamily="cursive"
                     android:text="Set Reminder"
+                    android:onClick="reminder_function"
+                    android:focusable="true"
                     android:textSize="30sp"
-                    android:clickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton" />

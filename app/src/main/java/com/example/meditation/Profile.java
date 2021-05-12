@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class Profile extends AppCompatActivity {
 
@@ -20,6 +23,9 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        EditText et = findViewById(R.id.your_name);
+        et.setText("yoo");//MainActivity.dbHelper.getName());
+        //MainActivity.dbHelper.changeName(et.getText().toString());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -66,7 +72,7 @@ public class Profile extends AppCompatActivity {
                 // guess what... EDIT NAME
                 EditText et = findViewById(R.id.your_name);
                 // update database
-                //MainActivity.dbHelper.changeName(et.getText().toString());
+                MainActivity.dbHelper.setName(et.getText().toString());
                 et.setEnabled(false);
 
                 edit_name_done.setVisibility(View.GONE);
@@ -75,5 +81,38 @@ public class Profile extends AppCompatActivity {
                 et.setCursorVisible(false);
             }
         });
+/*
+        TextView set_reminder = findViewById(R.id.set_reminder);
+        set_reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String string = MainActivity.dbHelper.getName();
+                Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
+                List<String> list = MainActivity.dbHelper.fetchData2();
+                Toast.makeText (Profile.this, list.toString(), Toast.LENGTH_LONG).show();
+            }
+        });*/
+
+    }
+    // clickable Text View. Can't be assigned an OnClickListener :(
+    public void reminder_function(View v) {
+        Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
+        //List<String> list = MainActivity.dbHelper.fetchData2();
+        //Toast.makeText (Profile.this, list.toString(), Toast.LENGTH_LONG).show();
     }
 }
+
+/*// TO BE DELETED/EDITED -> test the database
+        Button testButton = findViewById(R.id.test_counter);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // add to database -> a new meditation entry
+                boolean success = MainActivity.dbHelper.addMeditation(12, 12, 5, 2021);
+
+                Toast.makeText (Solo_meditation.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
+                List<String> list = MainActivity.dbHelper.fetchData();
+                Toast.makeText (Solo_meditation.this, list.toString(), Toast.LENGTH_LONG).show();
+
+            }
+        });*/

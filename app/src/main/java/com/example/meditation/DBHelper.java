@@ -73,8 +73,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // change user local name
-    public void changeName(String name) {
-        SQLiteDatabase myDB = this.getReadableDatabase();
+    public void setName(String name) {
+        SQLiteDatabase myDB = this.getWritableDatabase();
 
         String queryString = "UPDATE USER SET NAME = " + name + " WHERE ID = 1;";
 
@@ -82,6 +82,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
         cursor.close();
         myDB.close();
+    }
+
+    public String getName() {
+        String name;
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        String queryString = "SELECT NAME FROM USER WHERE ID = 1;";
+        Cursor cursor = myDB.rawQuery(queryString, null);
+        cursor.moveToFirst();
+        name = cursor.getString(0);
+
+        cursor.close();
+        myDB.close();
+        return name;
     }
 
     // fetch data -> test to see if it works
@@ -112,6 +126,34 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+
+    // fetch data -> test to see if it works
+    public List<String> fetchData2(){
+        List<String> returnList = new ArrayList<>();
+
+        String queryString = "SELECT * FROM USER";
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        Cursor cursor = myDB.rawQuery(queryString, null);
+
+        // if there are entries
+        if (cursor.moveToFirst()) {
+            // get elements
+            do {
+                int med_time = cursor.getInt(0);
+                String day = cursor.getString(1);
+                int month = cursor.getInt(2);
+                int year = cursor.getInt(3);
+                String s = med_time + " " + day + "/" + month + "/" + year;
+                returnList.add(s);
+            } while(cursor.moveToNext());
+        } else {
+            // nope
+        }
+
+        cursor.close();
+        myDB.close();
+        return returnList;
+    }
     // Sad... ίσως όχι τόσο... Αλλά δεν θέλουμε login πλέον :)
 /*
     public Boolean insertData(String username, String password){
