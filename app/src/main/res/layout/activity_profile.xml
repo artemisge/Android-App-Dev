@@ -37,27 +37,47 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
+                android:id="@+id/edit_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="24dp"
 
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="185dp"
                 android:background="#FFFFFF"
-                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintStart_toEndOf="@+id/your_name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_edit_24"
                 tools:ignore="VectorDrawableCompat" />
 
-            <TextView
-                android:id="@+id/activityTitle"
+            <ImageButton
+                android:id="@+id/edit_name_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="185dp"
+                android:background="#FFFFFF"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/your_name"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_done_24"
+                tools:ignore="VectorDrawableCompat" />
+
+            <EditText
+                android:id="@+id/your_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="56dp"
                 android:fontFamily="cursive"
+                android:inputType="none"
                 android:text="Name"
+
+                android:textColor="#757575"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +90,7 @@
                 android:layout_marginTop="28dp"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activityTitle">
+                app:layout_constraintTop_toBottomOf="@+id/your_name">
 
                 <LinearLayout
                     android:layout_width="match_parent"

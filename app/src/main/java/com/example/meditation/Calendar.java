@@ -18,7 +18,7 @@ public class Calendar extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         // added for clickability
-        TextView title = (TextView) findViewById(R.id.activityTitle);
+        TextView title = (TextView) findViewById(R.id.your_name);
         title.setText("Calendar activity");
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);

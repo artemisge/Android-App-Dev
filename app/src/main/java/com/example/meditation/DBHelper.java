@@ -25,9 +25,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // ΧΡΕΙΑΖΕΤΑΙ ΚΑΙ ENTRY ΓΙΑ ΟΛΕΣ ΤΙΣ ΦΟΡΕΣ ΠΟΥ ΕΧΕΙ ΚΑΝΕΙ MEDITATE
         // TOTAL TIME OF MED -> SUM OF ENTRIES
-        myDB.execSQL("CREATE TABLE USER(NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
+        myDB.execSQL("CREATE TABLE USER(ID INTEGER, NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
         myDB.execSQL("CREATE TABLE MED_STATS(DAY INTEGER, MONTH INTEGER, YEAR INTEGER, MED_TIME INTEGER)");
 
+        // init a user if no other entries exist
+        userInit();
     }
 
     @Override
@@ -46,17 +48,48 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("MONTH", month);
         contentValues.put("YEAR", year);
         long insert = myDB.insert("MED_STATS",null,contentValues);
+        myDB.close();
         if(insert == -1) return false;
         else return true;
     }
 
+    public void userInit() {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        // check if it's the first time the user uses the app
+        String queryString = "SELECT * FROM USER";
+        Cursor cursor = myDB.rawQuery(queryString, null);
+
+        if (!cursor.moveToFirst()) { // if there isn't an entry
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("ID", 1);
+            contentValues.put("NAME", "Your Name");
+            contentValues.put("MED_MAX_TIME", 0);
+            contentValues.put("DAYS_STRAIGHT", 0);
+
+            myDB.insert("MED_STATS",null,contentValues);
+        }
+        myDB.close();
+    }
+
+    // change user local name
+    public void changeName(String name) {
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        String queryString = "UPDATE USER SET NAME = " + name + " WHERE ID = 1;";
+
+        Cursor cursor = myDB.rawQuery(queryString, null);
+
+        cursor.close();
+        myDB.close();
+    }
 
     // fetch data -> test to see if it works
     public List<String> fetchData(){
         List<String> returnList = new ArrayList<>();
 
-        SQLiteDatabase myDB = this.getReadableDatabase();
         String queryString = "SELECT * FROM MED_STATS";
+        SQLiteDatabase myDB = this.getReadableDatabase();
         Cursor cursor = myDB.rawQuery(queryString, null);
 
         // if there are entries
