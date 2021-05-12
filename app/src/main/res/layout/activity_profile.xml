@@ -74,14 +74,18 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="56dp"
                 android:fontFamily="cursive"
-                android:inputType="none"
                 android:text="Name"
-
+                android:maxLength="15"
+                android:maxLines="1"
+                android:lines="1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:cursorVisible="false"
                 android:textColor="#757575"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+                app:layout_constraintTop_toBottomOf="@+id/imageButton"/>
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -176,8 +180,6 @@
                     android:clickable="true"
                     android:fontFamily="cursive"
                     android:text="Set Reminder"
-                    android:onClick="reminder_function"
-                    android:focusable="true"
                     android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
