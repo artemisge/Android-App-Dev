@@ -12,9 +12,7 @@
         android:theme="@style/Theme.Meditation">
         <activity android:name=".Welcome"></activity>
         <activity android:name=".activity_register" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+        <activity android:name=".Solo_meditation"/>
         <activity android:name=".Profile" />
         <activity android:name=".Meditate" />
         <activity android:name=".Calendar" />
