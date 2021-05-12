@@ -12,9 +12,10 @@
         android:theme="@style/Theme.Meditation">
         <activity android:name=".Welcome"></activity>
         <activity android:name=".activity_register" />
-        <activity android:name=".Solo_meditation"/>
         <activity android:name=".Profile" />
         <activity android:name=".Meditate" />
+        <activity android:name=".Solo_meditation" />
+        <activity android:name=".Guided_meditation" />
         <activity android:name=".Calendar" />
         <activity android:name=".MainActivity">
             <intent-filter>

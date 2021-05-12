@@ -44,14 +44,6 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        TextView changeAccount = findViewById(R.id.change_account);
-        changeAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Profile.this, Welcome.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }
