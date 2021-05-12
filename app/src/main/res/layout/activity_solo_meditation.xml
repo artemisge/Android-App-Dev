@@ -6,8 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".Solo_meditation">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:fontFamily="cursive"
+            android:text="Solo Meditate"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"></TextView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            android:scaleX="3"
+            android:scaleY="3"
+            android:src="@mipmap/lotus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
 
+        <Button
+            android:id="@+id/test_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="48dp"
+            android:enabled="true"
+            android:fontFamily="cursive"
+            android:text="test counter"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:backgroundTint="#A679BD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/test_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="24dp"
+            android:text="test text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/test_counter"></TextView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
@@ -18,5 +78,7 @@
         app:itemBackground="@color/purple_200"
         app:itemIconTint="#fff"
         app:itemTextColor="#fff"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"
+        />
+
 </RelativeLayout>

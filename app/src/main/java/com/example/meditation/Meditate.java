@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,21 +44,24 @@ public class Meditate extends AppCompatActivity {
             }
         });
 
-        Button guidedButton = findViewById(R.id.button);
+        Button guidedButton = (Button)findViewById(R.id.test_counter);
         guidedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Meditate.this, Guided_meditation.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(Meditate.this, Profile.class);
+                startActivity(intent1);
+                Toast.makeText (Meditate.this, "TEST BUTTON", Toast.LENGTH_SHORT).show();
             }
         });
 
-        Button soloButton = findViewById(R.id.button2);
+        Button soloButton = (Button)findViewById(R.id.solo_button);
         soloButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Meditate.this, Solo_meditation.class);
-                startActivity(intent);
+                Toast.makeText (Meditate.this, "TEST BUTTON2", Toast.LENGTH_SHORT).show();
+
+                Intent intent2 = new Intent(Meditate.this, Solo_meditation.class);
+                startActivity(intent2);
             }
         });
 
