@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Solo_meditation">
 
+
     <EditText
         android:id="@+id/edit_text_input_min"
         android:layout_width="120dp"

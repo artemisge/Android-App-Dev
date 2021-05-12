@@ -86,6 +86,7 @@ public class Solo_meditation extends AppCompatActivity {
             }
         });
 
+
         myButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
