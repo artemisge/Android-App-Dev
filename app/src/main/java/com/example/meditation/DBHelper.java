@@ -64,9 +64,24 @@ public class DBHelper extends SQLiteOpenHelper {
     public void setName(String name) {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
-        String queryString = "UPDATE USER SET NAME = '" + name + "' WHERE ID = 1;";
+        //String queryString = "UPDATE USER SET NAME = '" + name + "' WHERE ID = 1;";
 
-        Cursor cursor = myDB.rawQuery(queryString, null);
+        //Cursor cursor = myDB.rawQuery(queryString, null);
+        Cursor cursor = myDB.rawQuery("SELECT * FROM USER;", null);
+        cursor.moveToFirst();
+        int stat1 = cursor.getInt(2);
+        int stat2 = cursor.getInt(3);
+
+        myDB.execSQL("DROP TABLE IF EXISTS USER");
+        myDB.execSQL("CREATE TABLE USER(ID INTEGER, NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID", 1);
+        contentValues.put("NAME", name);
+        contentValues.put("MED_MAX_TIME", stat1);
+        contentValues.put("DAYS_STRAIGHT", stat2);
+
+        myDB.insert("USER",null,contentValues);
 
         cursor.close();
         myDB.close();

@@ -2,6 +2,7 @@ package com.example.meditation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.PriorityGoalRow;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,8 @@ public class Profile extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.your_name);
         tv.setText(MainActivity.dbHelper.getName());
+
+        // also do: get awards
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -105,6 +109,37 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        // AWARDS
+        ImageView week_straight = findViewById(R.id.week_straight);
+        week_straight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText (Profile.this, "One week straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+            }
+        });
+        ImageView month_straight = findViewById(R.id.month_straight);
+        month_straight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText (Profile.this, "One month straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+            }
+        });
+        ImageView half_hour_straight = findViewById(R.id.half_hour_straight);
+        half_hour_straight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText (Profile.this, "Half hour straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+            }
+        });
+        ImageView one_hour_straight = findViewById(R.id.one_hour_straight);
+        one_hour_straight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText (Profile.this, "One hour straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         TextView set_reminder = findViewById(R.id.set_reminder);
         set_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,32 +162,3 @@ public class Profile extends AppCompatActivity {
 
     }
 }
-
-/*// TO BE DELETED/EDITED -> test the database
-        Button testButton = findViewById(R.id.test_counter);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // add to database -> a new meditation entry
-                boolean success = MainActivity.dbHelper.addMeditation(12, 12, 5, 2021);
-
-                Toast.makeText (Solo_meditation.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
-                List<String> list = MainActivity.dbHelper.fetchData();
-                Toast.makeText (Solo_meditation.this, list.toString(), Toast.LENGTH_LONG).show();
-
-            }
-        });*/
-//
-//<TextView
-//    android:id="@+id/your_name"
-//    android:layout_width="wrap_content"
-//    android:layout_height="wrap_content"
-//    android:layout_gravity="center"
-//    android:layout_marginTop="56dp"
-//    android:fontFamily="cursive"
-//    android:text="Name"
-//    android:textColor="#757575"
-//    android:textSize="35sp"
-//    app:layout_constraintEnd_toEndOf="parent"
-//    app:layout_constraintStart_toStartOf="parent"
-//    app:layout_constraintTop_toBottomOf="@+id/imageButton" />
