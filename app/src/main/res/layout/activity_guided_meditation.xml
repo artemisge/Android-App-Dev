@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Guided_meditation">
 
+    <ListView
+        android:id="@+id/listViewMed"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
         android:layout_width="match_parent"
