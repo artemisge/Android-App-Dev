@@ -22,6 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase myDB){
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS MED_STATS(MED_TIME INTEGER, DAY INTEGER, MONTH INTEGER, YEAR INTEGER)");
+        userInit();
         return;
     }
 
