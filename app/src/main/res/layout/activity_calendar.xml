@@ -84,12 +84,12 @@
         app:layout_constraintVertical_bias="0.72" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/streak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:inputType="number"
-        android:text="0"
+        android:text="-"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,12 +99,12 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/total_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:inputType="number"
-        android:text="0"
+        android:text="-"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

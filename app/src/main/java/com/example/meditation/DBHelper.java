@@ -143,10 +143,33 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.close();
     }
 
-    public void load() {
+    public int getStreak() {
+        int streak;
+        SQLiteDatabase myDB = this.getReadableDatabase();
 
+        String queryString = "SELECT * FROM USER;";
+        Cursor cursor = myDB.rawQuery(queryString, null);
+        cursor.moveToFirst();
+        streak = cursor.getInt(3);
+
+        cursor.close();
+        myDB.close();
+        return streak;
     }
 
+    public int getTotalTime() {
+        int total_time;
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        String queryString = "SELECT * FROM USER;";
+        Cursor cursor = myDB.rawQuery(queryString, null);
+        cursor.moveToFirst();
+        total_time = cursor.getInt(2);
+
+        cursor.close();
+        myDB.close();
+        return total_time;
+    }
 
     // fetch data -> test to see if it works
     public List<String> fetchData2(){

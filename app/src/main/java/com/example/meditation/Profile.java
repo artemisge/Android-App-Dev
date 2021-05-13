@@ -151,14 +151,5 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        TextView clear_database = findViewById(R.id.clear_database);
-        clear_database.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.dbHelper.clearDatabase();
-                Toast.makeText (Profile.this, "cleared! ", Toast.LENGTH_LONG).show();
-            }
-        });
-
     }
 }

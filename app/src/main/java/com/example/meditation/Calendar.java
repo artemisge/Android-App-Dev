@@ -18,8 +18,9 @@ public class Calendar extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         // added for clickability
-        TextView title = (TextView) findViewById(R.id.your_name);
-        title.setText("Calendar activity");
+        //TextView title = (TextView) findViewById(R.id.your_name);
+        //title.setText("Calendar activity");
+        updateStats();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -44,5 +45,16 @@ public class Calendar extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public void updateStats() {
+        // fetch data from database
+        TextView streak = (TextView) findViewById(R.id.streak);
+        TextView total_time = (TextView) findViewById(R.id.total_time);
+
+        streak.setText(Integer.toString(MainActivity.dbHelper.getStreak()));
+        total_time.setText(Integer.toString(MainActivity.dbHelper.getTotalTime()));
+
+
     }
 }
