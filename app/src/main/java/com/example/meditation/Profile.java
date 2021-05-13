@@ -27,8 +27,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         TextView tv = findViewById(R.id.your_name);
-        tv.setText("Name");//MainActivity.dbHelper.getName());
-        //MainActivity.dbHelper.changeName(et.getText().toString());
+        tv.setText(MainActivity.dbHelper.getName());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -58,10 +57,6 @@ public class Profile extends AppCompatActivity {
         edit_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // guess what... EDIT NAME
-//                TextView tv = findViewById(R.id.your_name);
-//                tv.setVisibility(View.INVISIBLE);
-
                 EditText et = findViewById(R.id.your_name);
                 et.setFocusableInTouchMode(true);
                 et.setFocusable(true);
@@ -80,16 +75,15 @@ public class Profile extends AppCompatActivity {
                 // guess what... EDIT NAME
                 EditText et = findViewById(R.id.your_name);
                 String new_name = et.getText().toString();
+
                 et.setEnabled(false);
-//                TextView tv = findViewById(R.id.your_name);
-//                tv.setVisibility(View.VISIBLE);
-//                et.setVisibility(View.GONE);
-//                tv.setText(new_name);
                 et.setFocusableInTouchMode(false);
                 et.setFocusable(false);
                 et.setCursorVisible(false);
 
-                //MainActivity.dbHelper.setName(et.getText().toString());
+                Toast.makeText (Profile.this, "name changed to: " + new_name, Toast.LENGTH_SHORT).show();
+
+                MainActivity.dbHelper.setName(new_name);
 
                 edit_name_done.setVisibility(View.GONE);
                 ImageButton edit_name = findViewById(R.id.edit_name);
@@ -98,14 +92,36 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        TextView awards = findViewById(R.id.awards);
+        awards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String string = MainActivity.dbHelper.getName();
+                //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
+
+                boolean success = MainActivity.dbHelper.addMeditation(12, 12, 5, 2021);
+
+                Toast.makeText (Profile.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         TextView set_reminder = findViewById(R.id.set_reminder);
         set_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String string = MainActivity.dbHelper.getName();
-                Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
-                //List<String> list = MainActivity.dbHelper.fetchData2();
-                //Toast.makeText (Profile.this, list.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
+                List<String> list = MainActivity.dbHelper.fetchData2();
+                Toast.makeText (Profile.this, "all data: " + list.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        TextView clear_database = findViewById(R.id.clear_database);
+        clear_database.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.dbHelper.clearDatabase();
+                Toast.makeText (Profile.this, "cleared! ", Toast.LENGTH_LONG).show();
             }
         });
 

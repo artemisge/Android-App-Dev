@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -13,29 +14,21 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public static final String DBNAME="User.db";
+    public static final String DBNAME="Meditation.db";
 
     public DBHelper(Context context) {
-        super(context, DBNAME, null,1);
+        super(context, DBNAME, null,2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase myDB){
-        //myDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
-
-        // ΧΡΕΙΑΖΕΤΑΙ ΚΑΙ ENTRY ΓΙΑ ΟΛΕΣ ΤΙΣ ΦΟΡΕΣ ΠΟΥ ΕΧΕΙ ΚΑΝΕΙ MEDITATE
-        // TOTAL TIME OF MED -> SUM OF ENTRIES
-        myDB.execSQL("CREATE TABLE USER(ID INTEGER, NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
-        myDB.execSQL("CREATE TABLE MED_STATS(DAY INTEGER, MONTH INTEGER, YEAR INTEGER, MED_TIME INTEGER)");
-
-        // init a user if no other entries exist
-        userInit();
+        return;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase myDB, int i , int i1)
     {
-        myDB.execSQL("drop Table if exists users");
+        clearDatabase();
     }
 
 
@@ -48,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("MONTH", month);
         contentValues.put("YEAR", year);
         long insert = myDB.insert("MED_STATS",null,contentValues);
-        myDB.close();
+        //myDB.close();
         if(insert == -1) return false;
         else return true;
     }
@@ -56,27 +49,22 @@ public class DBHelper extends SQLiteOpenHelper {
     public void userInit() {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
-        // check if it's the first time the user uses the app
-        String queryString = "SELECT * FROM USER";
-        Cursor cursor = myDB.rawQuery(queryString, null);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID", 1);
+        contentValues.put("NAME", "Your Name");
+        contentValues.put("MED_MAX_TIME", 0);
+        contentValues.put("DAYS_STRAIGHT", 0);
 
-        if (!cursor.moveToFirst()) { // if there isn't an entry
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("ID", 1);
-            contentValues.put("NAME", "Your Name");
-            contentValues.put("MED_MAX_TIME", 0);
-            contentValues.put("DAYS_STRAIGHT", 0);
+        myDB.insert("USER",null,contentValues);
 
-            myDB.insert("MED_STATS",null,contentValues);
-        }
-        myDB.close();
+        //myDB.close();
     }
 
     // change user local name
     public void setName(String name) {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
-        String queryString = "UPDATE USER SET NAME = " + name + " WHERE ID = 1;";
+        String queryString = "UPDATE USER SET NAME = '" + name + "' WHERE ID = 1;";
 
         Cursor cursor = myDB.rawQuery(queryString, null);
 
@@ -88,10 +76,10 @@ public class DBHelper extends SQLiteOpenHelper {
         String name;
         SQLiteDatabase myDB = this.getReadableDatabase();
 
-        String queryString = "SELECT NAME FROM USER WHERE ID = 1;";
+        String queryString = "SELECT * FROM USER;";
         Cursor cursor = myDB.rawQuery(queryString, null);
         cursor.moveToFirst();
-        name = cursor.getString(0);
+        name = cursor.getString(1);
 
         cursor.close();
         myDB.close();
@@ -101,6 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // fetch data -> test to see if it works
     public List<String> fetchData(){
         List<String> returnList = new ArrayList<>();
+        returnList.add("empty?");
 
         String queryString = "SELECT * FROM MED_STATS";
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -124,6 +113,23 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         myDB.close();
         return returnList;
+    }
+
+    public void clearDatabase() {
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        myDB.execSQL("DROP TABLE IF EXISTS USER");
+        myDB.execSQL("CREATE TABLE USER(ID INTEGER, NAME TEXT, MED_MAX_TIME INTEGER, DAYS_STRAIGHT INTEGER)");
+
+        myDB.execSQL("DROP TABLE IF EXISTS MED_STATS");
+        myDB.execSQL("CREATE TABLE MED_STATS(MED_TIME INTEGER, DAY INTEGER, MONTH INTEGER, YEAR INTEGER)");
+
+        userInit();
+        myDB.close();
+    }
+
+    public void load() {
+
     }
 
 

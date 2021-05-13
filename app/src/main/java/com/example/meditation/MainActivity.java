@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         // DATABASE reference
         dbHelper= new DBHelper(MainActivity.this);
+        //dbHelper.userInit();
 
         // BOTTOM NAV BAR
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         ImageButton lotusButton = findViewById(R.id.lotus_button);
         lotusButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
+    }
+
 
     // ART: xrysa to bazo se comment giati an katalaba kala, apla itheles na pas sto meditate activity.
     // prosthesa event listener. Opote nmz den xreiazetai to parakato.
