@@ -38,20 +38,14 @@ public class Guided_meditation extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.Calendar:
                         Intent intent1 = new Intent(Guided_meditation.this, Calendar.class);
-                        if(myMediaPlayer!=null)
-                            myMediaPlayer.release();
                         startActivity(intent1);
                         break;
                     case R.id.Profile:
                         Intent intent2 = new Intent(Guided_meditation.this, Profile.class);
-                        if(myMediaPlayer!=null)
-                            myMediaPlayer.release();
                         startActivity(intent2);
                         break;
                     case R.id.Home:
                         Intent intent3 = new Intent(Guided_meditation.this, MainActivity.class);
-                        if(myMediaPlayer!=null)
-                            myMediaPlayer.release();
                         startActivity(intent3);
                         break;
                 }
@@ -76,11 +70,22 @@ public class Guided_meditation extends AppCompatActivity {
                 if(myMediaPlayer!=null)
                     myMediaPlayer.release();
 
-                int resId=getResources().getIdentifier((String) arrayList.get(position),"raw",getPackageName());
-                myMediaPlayer=MediaPlayer.create(Guided_meditation.this,resId);
-                myMediaPlayer.start();
+                int resId = getResources().getIdentifier((String) arrayList.get(position), "raw", getPackageName());
+                if(resId==myMediaPlayer.getAudioSessionId())
+                    myMediaPlayer.release();
+                else {
+                    myMediaPlayer = MediaPlayer.create(Guided_meditation.this, resId);
+                    myMediaPlayer.start();
+                }
 
             }
         });
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        if(myMediaPlayer!=null)
+            myMediaPlayer.release();
     }
 }
