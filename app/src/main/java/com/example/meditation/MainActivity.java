@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         // DATABASE reference
         dbHelper= new DBHelper(MainActivity.this);
-        //dbHelper.userInit();
 
         // BOTTOM NAV BAR
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);

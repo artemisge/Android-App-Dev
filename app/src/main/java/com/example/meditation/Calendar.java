@@ -53,7 +53,7 @@ public class Calendar extends AppCompatActivity {
         TextView total_time = (TextView) findViewById(R.id.total_time);
 
         streak.setText(Integer.toString(MainActivity.dbHelper.getStreak()));
-        total_time.setText(Integer.toString(MainActivity.dbHelper.getTotalTime()));
+        total_time.setText(Integer.toString(MainActivity.dbHelper.getTotalDays()));
 
 
     }

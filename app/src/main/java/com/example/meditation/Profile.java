@@ -28,7 +28,6 @@ public class Profile extends AppCompatActivity {
         tv.setText(MainActivity.dbHelper.getName());
 
         loadAwards();
-        // also do: get awards
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -100,7 +99,7 @@ public class Profile extends AppCompatActivity {
                 //String string = MainActivity.dbHelper.getName();
                 //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
 
-                boolean success = MainActivity.dbHelper.addMeditation(12, 12, 5, 2021);
+                boolean success = MainActivity.dbHelper.addMeditation(12, 5, 2021);
 
                 Toast.makeText (Profile.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
             }
@@ -143,7 +142,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 //String string = MainActivity.dbHelper.getName();
                 //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
-                List<String> list = MainActivity.dbHelper.fetchData2();
+                List<String> list = MainActivity.dbHelper.fetchData();
                 Toast.makeText (Profile.this, "all data: " + list.toString(), Toast.LENGTH_LONG).show();
             }
         });
@@ -159,16 +158,16 @@ public class Profile extends AppCompatActivity {
         // returns 4-slot boolean array
         Boolean[] unlocked = MainActivity.dbHelper.loadAwards();
         if (unlocked[0]) {
-
+            iv1.setImageResource(R.drawable.ic_baseline_do_not_disturb_on_24);
         }
         if (unlocked[1]) {
-
+            iv2.setImageResource(R.drawable.ic_baseline_calendar_today_24);
         }
         if (unlocked[2]) {
-
+            iv3.setImageResource(R.drawable.ic_baseline_calendar_today_24);
         }
         if (unlocked[3]) {
-
+            iv4.setImageResource(R.drawable.ic_baseline_calendar_today_24);
         }
     }
 }
