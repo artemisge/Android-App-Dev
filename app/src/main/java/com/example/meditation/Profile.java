@@ -110,28 +110,28 @@ public class Profile extends AppCompatActivity {
         week_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "First time meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "First time meditating: ACHIEVEMENT " + unlock[0], Toast.LENGTH_LONG).show();
             }
         });
         ImageView month_straight = findViewById(R.id.three_days);
         month_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "Three days straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "Three days straight meditating: ACHIEVEMENT " + unlock[1], Toast.LENGTH_LONG).show();
             }
         });
         ImageView half_hour_straight = findViewById(R.id.one_week);
         half_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One week straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "One week straight meditating: ACHIEVEMENT " + unlock[2], Toast.LENGTH_LONG).show();
             }
         });
         ImageView one_hour_straight = findViewById(R.id.one_month);
         one_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One month straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "One month straight meditating: ACHIEVEMENT " + unlock[3], Toast.LENGTH_LONG).show();
             }
         });
 
@@ -149,6 +149,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    String[] unlock = {"LOCKED", "LOCKED", "LOCKED", "LOCKED"};
     public void loadAwards() {
         ImageView iv1 = findViewById(R.id.one_day);
         ImageView iv2 = findViewById(R.id.three_days);
@@ -159,15 +160,19 @@ public class Profile extends AppCompatActivity {
         Boolean[] unlocked = MainActivity.dbHelper.loadAwards();
         if (unlocked[0]) {
             iv1.setImageResource(R.mipmap.lotus_phase1);
+            unlock[0] = "UNLOCKED";
         }
         if (unlocked[1]) {
             iv2.setImageResource(R.mipmap.lotus_phase2);
+            unlock[1] = "UNLOCKED";
         }
         if (unlocked[2]) {
             iv3.setImageResource(R.mipmap.lotus_phase3);
+            unlock[2] = "UNLOCKED";
         }
         if (unlocked[3]) {
             iv4.setImageResource(R.mipmap.lotus_phase4);
+            unlock[3] = "UNLOCKED";
         }
     }
 }
