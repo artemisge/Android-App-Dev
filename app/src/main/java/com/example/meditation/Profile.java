@@ -2,13 +2,11 @@ package com.example.meditation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.solver.PriorityGoalRow;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -31,6 +27,7 @@ public class Profile extends AppCompatActivity {
         TextView tv = findViewById(R.id.your_name);
         tv.setText(MainActivity.dbHelper.getName());
 
+        loadAwards();
         // also do: get awards
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
@@ -110,32 +107,32 @@ public class Profile extends AppCompatActivity {
         });
 
         // AWARDS
-        ImageView week_straight = findViewById(R.id.week_straight);
+        ImageView week_straight = findViewById(R.id.one_day);
         week_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One week straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "First time meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
             }
         });
-        ImageView month_straight = findViewById(R.id.month_straight);
+        ImageView month_straight = findViewById(R.id.three_days);
         month_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One month straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "Three days straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
             }
         });
-        ImageView half_hour_straight = findViewById(R.id.half_hour_straight);
+        ImageView half_hour_straight = findViewById(R.id.one_week);
         half_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "Half hour straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "One week straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
             }
         });
-        ImageView one_hour_straight = findViewById(R.id.one_hour_straight);
+        ImageView one_hour_straight = findViewById(R.id.one_month);
         one_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One hour straight meditation: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "One month straight meditating: ACHIEVEMENT LOCKED ", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -150,6 +147,10 @@ public class Profile extends AppCompatActivity {
                 Toast.makeText (Profile.this, "all data: " + list.toString(), Toast.LENGTH_LONG).show();
             }
         });
+
+    }
+
+    public void loadAwards() {
 
     }
 }
