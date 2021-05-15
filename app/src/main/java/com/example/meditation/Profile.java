@@ -158,16 +158,16 @@ public class Profile extends AppCompatActivity {
         // returns 4-slot boolean array
         Boolean[] unlocked = MainActivity.dbHelper.loadAwards();
         if (unlocked[0]) {
-            iv1.setImageResource(R.drawable.ic_baseline_do_not_disturb_on_24);
+            iv1.setImageResource(R.mipmap.lotus_phase1);
         }
         if (unlocked[1]) {
-            iv2.setImageResource(R.drawable.ic_baseline_calendar_today_24);
+            iv2.setImageResource(R.mipmap.lotus_phase2);
         }
         if (unlocked[2]) {
-            iv3.setImageResource(R.drawable.ic_baseline_calendar_today_24);
+            iv3.setImageResource(R.mipmap.lotus_phase3);
         }
         if (unlocked[3]) {
-            iv4.setImageResource(R.drawable.ic_baseline_calendar_today_24);
+            iv4.setImageResource(R.mipmap.lotus_phase4);
         }
     }
 }
