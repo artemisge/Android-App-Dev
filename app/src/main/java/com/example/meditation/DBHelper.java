@@ -49,6 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    public Boolean[] loadAwards() {
+        // check database
+        Boolean[] unlocked = {false, false, false, false}; // tmp
+        return unlocked;
+    }
+
+
     public void userInit() {
         SQLiteDatabase myDB = this.getWritableDatabase();
 

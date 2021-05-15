@@ -151,6 +151,24 @@ public class Profile extends AppCompatActivity {
     }
 
     public void loadAwards() {
+        ImageView iv1 = findViewById(R.id.one_day);
+        ImageView iv2 = findViewById(R.id.three_days);
+        ImageView iv3 = findViewById(R.id.one_week);
+        ImageView iv4 = findViewById(R.id.one_month);
 
+        // returns 4-slot boolean array
+        Boolean[] unlocked = MainActivity.dbHelper.loadAwards();
+        if (unlocked[0]) {
+
+        }
+        if (unlocked[1]) {
+
+        }
+        if (unlocked[2]) {
+
+        }
+        if (unlocked[3]) {
+
+        }
     }
 }
