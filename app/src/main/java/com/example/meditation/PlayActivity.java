@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class PlayActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class PlayActivity extends AppCompatActivity {
     public static final String EXTRA_NAME="session_name";
     static MediaPlayer mediaPlayer;
     int position;
-    ArrayList<String> mySessions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -82,14 +83,21 @@ public class PlayActivity extends AppCompatActivity {
 
         //Uri uri = Uri.parse(mySessions.get(position).toString());
         //sname=mySessions.get(position);
-        txtname.setText(sname);
+        //txtname.setText(sname);
 
-        mySessions = (ArrayList) bundle.getParcelableArrayList("sessions");
+        ArrayList arrayList = new ArrayList<String>();
+        Field[] fields = R.raw.class.getFields();
+        for(int j=0; j<fields.length; j++){
+            arrayList.add(fields[j].getName());
+        }
         position = bundle.getInt("pos",0);
-        txtname.setSelected(true);
-        int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
-        sname=mySessions.get(resId);
-        txtname.setText(sname);
+
+        //txtname.setSelected(true);
+        int resId = getResources().getIdentifier((String) arrayList.get(position), "raw", getPackageName());
+
+        //sname= (String) arrayList.get(position);
+        //txtname.setText(sname);
+
         mediaPlayer = MediaPlayer.create(PlayActivity.this, resId);
         mediaPlayer.start();
 

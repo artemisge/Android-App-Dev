@@ -67,7 +67,7 @@ public class Guided_meditation extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(myMediaPlayer!=null)
+                /*if(myMediaPlayer!=null)
                     myMediaPlayer.release();
 
                 int resId = getResources().getIdentifier((String) arrayList.get(position), "raw", getPackageName());
@@ -76,16 +76,18 @@ public class Guided_meditation extends AppCompatActivity {
                 else {
                     myMediaPlayer = MediaPlayer.create(Guided_meditation.this, resId);
                     myMediaPlayer.start();
-                }
+                }*/
 
+                Intent i=new Intent(Guided_meditation.this, PlayActivity.class);//.putExtra("pos",position);
+                startActivity(i);
             }
         });
     }
 
-    @Override
-    public void onPause(){
+    //@Override
+    /*public void onPause(){
         super.onPause();
         if(myMediaPlayer!=null)
             myMediaPlayer.release();
-    }
+    }*/
 }

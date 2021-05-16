@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class Solo_meditation extends AppCompatActivity {
@@ -31,6 +33,10 @@ public class Solo_meditation extends AppCompatActivity {
     private long mTimeLeftInMillis;
     private long myEndTime;
 
+    //pass this to calendar
+    Date date=new Date();
+    String pattern = "MM-dd-yyyy";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
