@@ -13,9 +13,12 @@
         <activity android:name=".PlayActivity"/>
         <activity android:name=".Welcome"></activity>
         <activity android:name=".Profile" />
-        <activity android:name=".Meditate" />
-        <activity android:name=".Solo_meditation" />
-        <activity android:name=".Guided_meditation" />
+        <activity android:name=".Meditate"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Solo_meditation"
+            android:parentActivityName=".Meditate"/>
+        <activity android:name=".Guided_meditation"
+            android:parentActivityName=".Meditate"/>
         <activity android:name=".Calendar" />
         <activity android:name=".MainActivity">
             <intent-filter>
