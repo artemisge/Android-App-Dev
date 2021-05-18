@@ -36,21 +36,49 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     // day -> day that the meditation STARTED, not finished
-    public Boolean addMeditation(int day, int month, int year){
+    public boolean addMeditation(String currentDay){
+        int day, month, year;
+        String[] cd = currentDay.split("-");
+        day = Integer.getInteger(cd[1]);
+        month = Integer.getInteger(cd[0]);
+        year = Integer.getInteger(cd[2]);
+
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("DAY", day);
         contentValues.put("MONTH", month);
         contentValues.put("YEAR", year);
         long insert = myDB.insert("MED_STATS",null,contentValues);
-        //myDB.close();
+        myDB.close();
         if(insert == -1) return false;
         else return true;
     }
 
-    public Boolean[] loadAwards() {
+    public boolean checkDay(String currentDay) {
+        int day, month, year;
+        String[] cd = currentDay.split("-");
+        day = Integer.parseInt(cd[1]);
+        month = Integer.parseInt(cd[0]);
+        year = Integer.parseInt(cd[2]);
+        System.out.println(year);
+
+        SQLiteDatabase myDB = this.getReadableDatabase();
+        String queryString = "SELECT * FROM MED_STATS WHERE DAY = " +  day + " AND MONTH = " + month + " AND YEAR = " + year;;
+        Cursor cursor = myDB.rawQuery(queryString, null);
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            myDB.close();
+            return true;
+            // day already inserted
+        }
+        cursor.close();
+        myDB.close();
+        return false;
+    }
+
+    public boolean[] loadAwards() {
         // check database
-        Boolean[] unlocked = {true, false, false, false}; // tmp
+        boolean[] unlocked = {true, false, false, false}; // tmp
         return unlocked;
     }
 

@@ -34,7 +34,7 @@ public class Solo_meditation extends AppCompatActivity {
     private long myEndTime;
 
     //pass this to calendar
-    Date date=new Date();
+    //Date date=new Date();
     String pattern = "MM-dd-yyyy";
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
@@ -104,6 +104,15 @@ public class Solo_meditation extends AppCompatActivity {
                     String input = myEditTextInput.getText().toString();
                     if (myStartTimeInMillis != 0) {
                         startTimer();
+
+                        // add meditation in database if it is the first time meditating
+                        // in that day
+                        String currentDay = simpleDateFormat.format(new Date());
+                        if (!MainActivity.dbHelper.checkDay(currentDay)) {
+                             Toast.makeText(Solo_meditation.this, currentDay, Toast.LENGTH_SHORT).show();
+
+                            //MainActivity.dbHelper.addMeditation((currentDay));
+                        }
                     }
                 }
             }

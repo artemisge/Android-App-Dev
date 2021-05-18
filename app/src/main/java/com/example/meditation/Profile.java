@@ -99,9 +99,9 @@ public class Profile extends AppCompatActivity {
                 //String string = MainActivity.dbHelper.getName();
                 //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
 
-                boolean success = MainActivity.dbHelper.addMeditation(12, 5, 2021);
+                //boolean success = MainActivity.dbHelper.addMeditation(12, 5, 2021);
 
-                Toast.makeText (Profile.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
+                //Toast.makeText (Profile.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -157,7 +157,7 @@ public class Profile extends AppCompatActivity {
         ImageView iv4 = findViewById(R.id.one_month);
 
         // returns 4-slot boolean array
-        Boolean[] unlocked = MainActivity.dbHelper.loadAwards();
+        boolean[] unlocked = MainActivity.dbHelper.loadAwards();
         if (unlocked[0]) {
             iv1.setImageResource(R.mipmap.lotus_phase1);
             unlock[0] = "UNLOCKED";
