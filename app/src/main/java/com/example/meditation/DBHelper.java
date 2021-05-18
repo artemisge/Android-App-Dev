@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -52,6 +55,56 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.close();
         if(insert == -1) return false;
         else return true;
+    }
+
+    public void updateStreak(String currentDay) throws ParseException {
+        int streak;
+
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        // get previous day
+        String previousDay = simpleDateFormat.format(new Date(simpleDateFormat.parse(currentDay).getTime() - (1000*60*60*24)));
+
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        Cursor cursor = myDB.rawQuery("SELECT * FROM USER;", null);
+        cursor.moveToFirst();
+        String name  = cursor.getString(1);
+        int stat1 = cursor.getInt(2);
+        int aw1 = cursor.getInt(3);
+        int aw2 = cursor.getInt(4);
+        int aw3 = cursor.getInt(5);
+        int aw4 = cursor.getInt(6);
+        myDB.close();
+        if (checkDay(previousDay)) {
+            // streak ++
+            stat1++;
+        } else {
+            // streak = 1 (only current day)
+            stat1 = 1;
+        }
+        myDB = this.getWritableDatabase();
+
+        myDB.execSQL("DROP TABLE IF EXISTS USER");
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, DAYS_STRAIGHT INTEGER, AWARD1 INTEGER, AWARD2 INTEGER, AWARD3 INTEGER, AWARD4 INTEGER)");
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID", 1);
+        contentValues.put("NAME", name);
+        contentValues.put("DAYS_STRAIGHT", stat1);
+        contentValues.put("AWARD1", aw1);
+        contentValues.put("AWARD2", aw2);
+        contentValues.put("AWARD3", aw3);
+        contentValues.put("AWARD4", aw4);
+
+        myDB.insert("USER",null,contentValues);
+
+        cursor.close();
+        myDB.close();
+    }
+
+    public void updateAwards() {
+        // check streak and update awards
     }
 
     public boolean checkDay(String currentDay) {

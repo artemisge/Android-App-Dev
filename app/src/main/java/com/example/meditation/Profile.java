@@ -96,12 +96,6 @@ public class Profile extends AppCompatActivity {
         awards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String string = MainActivity.dbHelper.getName();
-                //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
-
-                //boolean success = MainActivity.dbHelper.addMeditation(12, 5, 2021);
-
-                //Toast.makeText (Profile.this, "MED ENTRY ADDED: " + success, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -143,7 +137,7 @@ public class Profile extends AppCompatActivity {
                 //String string = MainActivity.dbHelper.getName();
                 //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
                 List<String> list = MainActivity.dbHelper.fetchData();
-                Toast.makeText (Profile.this, "all data: " + list.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText (Profile.this, "(TEST) all data: " + list.toString(), Toast.LENGTH_LONG).show();
             }
         });
 

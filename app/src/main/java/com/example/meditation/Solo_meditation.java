@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -109,9 +110,15 @@ public class Solo_meditation extends AppCompatActivity {
                         // in that day
                         String currentDay = simpleDateFormat.format(new Date());
                         if (!MainActivity.dbHelper.checkDay(currentDay)) {
-                             Toast.makeText(Solo_meditation.this, currentDay, Toast.LENGTH_SHORT).show();
+                             MainActivity.dbHelper.addMeditation((currentDay));
 
-                            MainActivity.dbHelper.addMeditation((currentDay));
+                            try {
+                                MainActivity.dbHelper.updateStreak(currentDay);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            MainActivity.dbHelper.updateAwards();
                         }
                     }
                 }
