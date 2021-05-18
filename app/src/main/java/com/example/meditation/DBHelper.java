@@ -174,6 +174,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public int[][] getCalendarDays() {
+        return null;
+    }
+
+
     public boolean[] loadAwards() {
         // check database
         SQLiteDatabase myDB = this.getReadableDatabase();
