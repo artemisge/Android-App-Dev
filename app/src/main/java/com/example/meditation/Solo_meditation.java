@@ -100,7 +100,11 @@ public class Solo_meditation extends AppCompatActivity {
                 if (myTimerRunning) {
                     pauseTimer();
                 } else {
-                    startTimer();
+                    // check if time in set isn't zero
+                    String input = myEditTextInput.getText().toString();
+                    if (myStartTimeInMillis != 0) {
+                        startTimer();
+                    }
                 }
             }
         });
