@@ -105,6 +105,49 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void updateAwards() {
         // check streak and update awards
+        SQLiteDatabase myDB = this.getWritableDatabase();
+
+        Cursor cursor = myDB.rawQuery("SELECT * FROM USER;", null);
+        cursor.moveToFirst();
+        String name  = cursor.getString(1);
+        int stat1 = cursor.getInt(2);
+        int aw1 = cursor.getInt(3);
+        int aw2 = cursor.getInt(4);
+        int aw3 = cursor.getInt(5);
+        int aw4 = cursor.getInt(6);
+
+        // check for new awards
+        if (stat1 >= 1) {
+            aw1 = 1;
+        }
+        if (stat1 >= 3) {
+            aw2 = 1;
+        }
+        if (stat1 >= 7) {
+            aw3 = 1;
+        }
+        if (stat1 >= 30) {
+            aw4 = 1;
+        }
+
+
+        myDB.execSQL("DROP TABLE IF EXISTS USER");
+        myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, DAYS_STRAIGHT INTEGER, AWARD1 INTEGER, AWARD2 INTEGER, AWARD3 INTEGER, AWARD4 INTEGER)");
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("ID", 1);
+        contentValues.put("NAME", name);
+        contentValues.put("DAYS_STRAIGHT", stat1);
+        contentValues.put("AWARD1", aw1);
+        contentValues.put("AWARD2", aw2);
+        contentValues.put("AWARD3", aw3);
+        contentValues.put("AWARD4", aw4);
+
+        myDB.insert("USER",null,contentValues);
+
+        cursor.close();
+        myDB.close();
+
     }
 
     public boolean checkDay(String currentDay) {
@@ -133,7 +176,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public boolean[] loadAwards() {
         // check database
-        boolean[] unlocked = {true, false, false, false}; // tmp
+        SQLiteDatabase myDB = this.getReadableDatabase();
+
+        Cursor cursor = myDB.rawQuery("SELECT * FROM USER;", null);
+        cursor.moveToFirst();
+        int aw1 = cursor.getInt(3);
+        int aw2 = cursor.getInt(4);
+        int aw3 = cursor.getInt(5);
+        int aw4 = cursor.getInt(6);
+        cursor.close();
+        myDB.close();
+        boolean[] unlocked = {aw1 == 1, aw2 == 1, aw3 == 1, aw4 == 1};
         return unlocked;
     }
 
