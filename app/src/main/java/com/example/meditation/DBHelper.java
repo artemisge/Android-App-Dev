@@ -39,9 +39,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean addMeditation(String currentDay){
         int day, month, year;
         String[] cd = currentDay.split("-");
-        day = Integer.getInteger(cd[1]);
-        month = Integer.getInteger(cd[0]);
-        year = Integer.getInteger(cd[2]);
+        day = Integer.parseInt(cd[1]);
+        month = Integer.parseInt(cd[0]);
+        year = Integer.parseInt(cd[2]);
 
         SQLiteDatabase myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -68,9 +68,11 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             cursor.close();
             myDB.close();
+            System.out.println("truueee check");
             return true;
             // day already inserted
         }
+        System.out.println("false check");
         cursor.close();
         myDB.close();
         return false;

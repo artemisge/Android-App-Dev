@@ -111,7 +111,7 @@ public class Solo_meditation extends AppCompatActivity {
                         if (!MainActivity.dbHelper.checkDay(currentDay)) {
                              Toast.makeText(Solo_meditation.this, currentDay, Toast.LENGTH_SHORT).show();
 
-                            //MainActivity.dbHelper.addMeditation((currentDay));
+                            MainActivity.dbHelper.addMeditation((currentDay));
                         }
                     }
                 }

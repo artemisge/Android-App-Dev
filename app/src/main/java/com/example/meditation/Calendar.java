@@ -50,7 +50,7 @@ public class Calendar extends AppCompatActivity {
     public void updateStats() {
         // fetch data from database
         TextView streak = (TextView) findViewById(R.id.streak);
-        TextView total_time = (TextView) findViewById(R.id.total_time);
+        TextView total_time = (TextView) findViewById(R.id.total_days);
 
         streak.setText(Integer.toString(MainActivity.dbHelper.getStreak()));
         total_time.setText(Integer.toString(MainActivity.dbHelper.getTotalDays()));
