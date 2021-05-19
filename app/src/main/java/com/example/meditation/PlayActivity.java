@@ -1,6 +1,8 @@
 package com.example.meditation;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,25 +15,29 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static com.example.meditation.R.color.design_default_color_background;
+
+
 public class PlayActivity extends AppCompatActivity {
 
     Button btnplay,btnnext,btnprev;
-    TextView txtname,txtstart,txtstop;
-    SeekBar seekmusic;
-    BarVisualizer visualizer;
+    TextView txtname;
+    SeekBar seekbar;
 
+    ArrayList<String> mySessions;
     String sname;
     public static final String EXTRA_NAME="session_name";
-    static MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer; //assign memory loc else multiple audio files will play at the same time
     int position;
+    Thread updateSeekBar;
 
-
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,14 +67,36 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
+        txtname=findViewById(R.id.txt);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Now Playing");
+
         btnnext=findViewById(R.id.btnnext);
         btnplay=findViewById(R.id.play_button);
         btnprev=findViewById(R.id.btnprev);
-        txtname=findViewById(R.id.txt);
-        txtstart=findViewById(R.id.txtstart);
-        txtstop=findViewById(R.id.txtstop);
-        seekmusic=findViewById(R.id.seekbar);
-        visualizer=findViewById(R.id.blast);
+
+        seekbar=findViewById(R.id.seekbar);
+
+        updateSeekBar=new Thread(){
+            @Override
+            public void run(){
+                int totalDuration = mediaPlayer.getDuration();
+                int currentPosition = 0;
+                while(currentPosition < totalDuration){
+                    try{
+                        sleep(500);
+                        currentPosition=mediaPlayer.getCurrentPosition();
+                        seekbar.setProgress(currentPosition);
+                    }
+                    catch (InterruptedException e){
+
+                    }
+                }
+            }
+        };
+
 
         if(mediaPlayer!=null){
             mediaPlayer.stop();
@@ -84,26 +112,50 @@ public class PlayActivity extends AppCompatActivity {
         //Uri uri = Uri.parse(mySessions.get(position).toString());
         //sname=mySessions.get(position);
         //txtname.setText(sname);
-
-        ArrayList arrayList = new ArrayList<String>();
         Field[] fields = R.raw.class.getFields();
-        for(int j=0; j<fields.length; j++){
-            arrayList.add(fields[j].getName());
-        }
+        mySessions = (ArrayList) bundle.getParcelableArrayList("sessions");
+        sname=mySessions.get(position);
+
+        String SessionName = i.getStringExtra("session_name");
+        txtname.setText(SessionName);
+        txtname.setSelected(true);
+
         position = bundle.getInt("pos",0);
+        int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
 
         //txtname.setSelected(true);
-        int resId = getResources().getIdentifier((String) arrayList.get(position), "raw", getPackageName());
+
 
         //sname= (String) arrayList.get(position);
         //txtname.setText(sname);
 
         mediaPlayer = MediaPlayer.create(PlayActivity.this, resId);
         mediaPlayer.start();
+        seekbar.setMax(mediaPlayer.getDuration());
+        updateSeekBar.start();
+        seekbar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.design_default_color_secondary), PorterDuff.Mode.MULTIPLY);
+        seekbar.getThumb().setColorFilter(getResources().getColor(R.color.design_default_color_primary), PorterDuff.Mode.MULTIPLY);
+
+        seekbar.setOnSeekBarChangeListener(new
+                                              SeekBar.OnSeekBarChangeListener() {
+                                                  @Override
+                                                  public void onProgressChanged(SeekBar seekBar, int i,
+                                                                                boolean b) {
+                                                  }
+                                                  @Override
+                                                  public void onStartTrackingTouch(SeekBar seekBar) {
+                                                  }
+                                                  @Override
+                                                  public void onStopTrackingTouch(SeekBar seekBar) {
+                                                      mediaPlayer.seekTo(seekBar.getProgress());
+
+                                                  }
+                                              });
 
         btnplay.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                seekbar.setMax(mediaPlayer.getDuration());
                 if(mediaPlayer.isPlaying())
                 {
                     btnplay.setBackgroundResource(R.drawable.ic_play);
@@ -117,5 +169,43 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
+        btnnext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                position=((position+1)%mySessions.size());
+                int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
+                // songNameText.setText(getSongName);
+                mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
+
+                sname = mySessions.get(position);
+                txtname.setText(sname);
+
+                try{
+                    mediaPlayer.start();
+                }catch(Exception e){}
+
+            }
+        });
+
+        btnprev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //songNameText.setText(getSongName);
+                mediaPlayer.stop();
+                mediaPlayer.release();
+
+                position=((position-1)<0)?(mySessions.size()-1):(position-1);
+                int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
+                mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
+                sname = mySessions.get(position);
+                txtname.setText(sname);
+                mediaPlayer.start();
+            }
+        });
+
     }
+
+
 }

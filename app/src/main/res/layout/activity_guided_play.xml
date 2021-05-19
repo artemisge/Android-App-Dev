@@ -38,8 +38,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
+                android:layout_width="234dp"
+                android:layout_height="208dp"
                 android:layout_marginBottom="8dp"
                 app:srcCompat="@mipmap/lotus" />
 
@@ -56,27 +56,6 @@
                     android:layout_margin="20dp"
                     android:layout_marginBottom="40dp" />
 
-                <TextView
-                    android:id="@+id/txtstart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="false"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_toLeftOf="@+id/seekbar"
-                    android:text="0:10"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/txtstop"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="false"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toRightOf="@+id/seekbar"
-                    android:text="4:10"
-                    android:textSize="14sp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -111,16 +90,6 @@
                         android:layout_toLeftOf="@+id/play_button"
                         android:background="@drawable/ic_previous" />
 
-                    <com.gauravk.audiovisualizer.visualizer.WaveVisualizer xmlns:custom="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/blast"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_alignParentBottom="true"
-                        custom:avColor="#8ECC9F"
-                        custom:avDensity="0.5"
-                        custom:avSpeed="normal"
-                        custom:avType="outline"
-                        custom:avWidth="4dp"/>
 
                 </RelativeLayout>
             </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.meditation;
 
 import android.content.Intent;
+import android.icu.text.Transliterator;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -78,9 +79,10 @@ public class Guided_meditation extends AppCompatActivity {
                     myMediaPlayer = MediaPlayer.create(Guided_meditation.this, resId);
                     myMediaPlayer.start();
                 }*/
+                String meditation_name=listView.getItemAtPosition(position).toString();
+                startActivity(new Intent(Guided_meditation.this,PlayActivity.class)
 
-                Intent i=new Intent(Guided_meditation.this, PlayActivity.class);//.putExtra("pos",position);
-                startActivity(i);
+                        .putExtra("pos",position).putExtra("sessions",arrayList).putExtra("session_name",meditation_name));
             }
         });
     }

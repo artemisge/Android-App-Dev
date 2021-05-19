@@ -136,7 +136,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 //String string = MainActivity.dbHelper.getName();
                 //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
-                List<String> list = MainActivity.dbHelper.fetchData();
+                List<int[]> list = MainActivity.dbHelper.getCalendarDays();
                 Toast.makeText (Profile.this, "(TEST) all data: " + list.toString(), Toast.LENGTH_LONG).show();
             }
         });
