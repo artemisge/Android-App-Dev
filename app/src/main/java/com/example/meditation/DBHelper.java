@@ -174,10 +174,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public int[][] getCalendarDays() {
-        return null;
-    }
-
 
     public boolean[] loadAwards() {
         // check database
@@ -260,10 +256,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return name;
     }
 
-    // fetch data -> test to see if it works
-    public List<String> fetchData(){
-        List<String> returnList = new ArrayList<>();
-        returnList.add("empty?");
+    // returns all meditation days
+    public List<int[]> getCalendarDays() {
+        List<int[]> returnList = new ArrayList<>();
 
         String queryString = "SELECT * FROM MED_STATS";
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -276,8 +271,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 int day = cursor.getInt(0);
                 int month = cursor.getInt(1);
                 int year = cursor.getInt(2);
-                String s = day + "/" + month + "/" + year;
-                returnList.add(s);
+                int[] date = {day, month, year};
+                returnList.add(date);
             } while(cursor.moveToNext());
         } else {
             // nope
