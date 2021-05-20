@@ -17,4 +17,7 @@
     <string name="register">Register</string>
     <string name="if_account">If you already have an account:</string>
     <string name="login_head">Login to your account</string>
+    <string name="calendar">Calendar</string>
+    <string name="streak">Streak</string>
+    <string name="total_time">Total time</string>
 </resources>
