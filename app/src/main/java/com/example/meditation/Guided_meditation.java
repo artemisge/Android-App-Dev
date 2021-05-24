@@ -24,7 +24,6 @@ public class Guided_meditation extends AppCompatActivity {
     ListView listView;
     ArrayList arrayList;
     ArrayAdapter myAdapter;
-    MediaPlayer myMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,9 @@ public class Guided_meditation extends AppCompatActivity {
         setContentView(R.layout.activity_guided_meditation);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //for the navbar at the bottom
+        //same throughout the app
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
-        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -58,27 +58,25 @@ public class Guided_meditation extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewMed);
         arrayList = new ArrayList<String>();
-        Field[] fields = R.raw.class.getFields();
-        for(int i=0; i<fields.length; i++){
-            arrayList.add(fields[i].getName());
+        Field[] fields = R.raw.class.getFields(); //get the audio files from raw directory
+        String nameOfSession;
+
+        //get the names of the audio files in the right format and add them to an array list
+        for(int i=1; i<fields.length; i++){ //skip the alarm audio file
+            //modify name of the sessions
+            nameOfSession=fields[i].getName().replace("_"," ");
+            nameOfSession=nameOfSession.substring(0,1).toUpperCase() + nameOfSession.substring(1);
+            arrayList.add(nameOfSession);
         }
 
+        //display the names of the audio files(guided meditation sessions) as a list
         myAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(myAdapter);
 
+        //upon clicking a list item, transfer to PlayActivity to play audio file
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*if(myMediaPlayer!=null)
-                    myMediaPlayer.release();
-
-                int resId = getResources().getIdentifier((String) arrayList.get(position), "raw", getPackageName());
-                if(resId==myMediaPlayer.getAudioSessionId())
-                    myMediaPlayer.release();
-                else {
-                    myMediaPlayer = MediaPlayer.create(Guided_meditation.this, resId);
-                    myMediaPlayer.start();
-                }*/
                 String meditation_name=listView.getItemAtPosition(position).toString();
                 startActivity(new Intent(Guided_meditation.this,PlayActivity.class)
 
