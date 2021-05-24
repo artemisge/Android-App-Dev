@@ -6,6 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".Solo_meditation">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_view_countdown"
+        android:layout_alignLeft="@+id/text_view_countdown"
+        android:layout_alignTop="@+id/text_view_countdown"
+        android:layout_alignEnd="@+id/text_view_countdown"
+        android:layout_alignRight="@+id/text_view_countdown"
+        android:layout_alignBottom="@+id/text_view_countdown"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="-13dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginBottom="13dp"
+        android:scaleX="3"
+        android:scaleY="3"
+        android:src="@mipmap/lotus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <EditText
         android:id="@+id/edit_text_input_min"
@@ -40,7 +63,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="00:00"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="60sp" />
     <Button
         android:id="@+id/button_start_pause"

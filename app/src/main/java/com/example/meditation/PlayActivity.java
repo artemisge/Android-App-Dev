@@ -42,13 +42,14 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guided_play);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                releasePlayer();
                 switch (item.getItemId()) {
                     case R.id.Calendar:
                         Intent intent1 = new Intent(PlayActivity.this, Calendar.class);
@@ -63,6 +64,7 @@ public class PlayActivity extends AppCompatActivity {
                         startActivity(intent3);
                         break;
                 }
+
 
                 return false;
             }
@@ -99,10 +101,7 @@ public class PlayActivity extends AppCompatActivity {
         };
 
 
-        if(mediaPlayer!=null){
-            mediaPlayer.stop();
-            mediaPlayer.release();
-        }
+        releasePlayer();
 
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
@@ -208,5 +207,20 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    private void releasePlayer()
+    {
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+        mediaPlayer=null;
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(mediaPlayer!=null)
+            mediaPlayer.release();
+    }
 
 }

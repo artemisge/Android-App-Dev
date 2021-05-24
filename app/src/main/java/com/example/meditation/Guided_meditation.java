@@ -87,10 +87,5 @@ public class Guided_meditation extends AppCompatActivity {
         });
     }
 
-    //@Override
-    /*public void onPause(){
-        super.onPause();
-        if(myMediaPlayer!=null)
-            myMediaPlayer.release();
-    }*/
+
 }
