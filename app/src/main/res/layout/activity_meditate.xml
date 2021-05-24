@@ -22,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"></TextView>
+            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <Button
@@ -51,7 +51,7 @@
             android:text="@string/guidedButton"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:backgroundTint="#A679BD"
+            app:backgroundTint="#8ECC9F"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
