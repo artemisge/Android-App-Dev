@@ -50,7 +50,7 @@ public class PlayActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.Calendar:
-                        Intent intent1 = new Intent(PlayActivity.this, Calendar.class);
+                        Intent intent1 = new Intent(PlayActivity.this, CalendarActivity.class);
                         startActivity(intent1);
                         break;
                     case R.id.Profile:
