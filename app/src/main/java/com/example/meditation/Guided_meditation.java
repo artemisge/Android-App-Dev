@@ -79,7 +79,7 @@ public class Guided_meditation extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String meditation_name = listView.getItemAtPosition(position).toString();
+                String meditation_name = listView.getItemAtPosition(position).toString(); //get the name of the chosen meditation session to pass it to PlayActivity
                 startActivity(new Intent(Guided_meditation.this, PlayActivity.class)
 
                         .putExtra("pos", position).putExtra("sessions", arrayList).putExtra("session_name", meditation_name));
