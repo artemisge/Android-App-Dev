@@ -222,8 +222,7 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onStop(){
         super.onStop();
-        if(mediaPlayer!=null)
-            mediaPlayer.release();
+        releasePlayer();
     }
 
 }
