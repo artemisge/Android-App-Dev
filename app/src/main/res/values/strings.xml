@@ -19,5 +19,5 @@
     <string name="login_head">Login to your account</string>
     <string name="calendar">Calendar</string>
     <string name="streak">Streak</string>
-    <string name="total_time">Total time</string>
+    <string name="total_days">Total days</string>
 </resources>
