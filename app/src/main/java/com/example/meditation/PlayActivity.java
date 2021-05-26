@@ -121,7 +121,7 @@ public class PlayActivity extends AppCompatActivity {
         seekbar.setMax(mediaPlayer.getDuration()); //set the duration of seekbar
         updateSeekBar.start(); //start the thread for the seekbar
         seekbar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.design_default_color_secondary), PorterDuff.Mode.MULTIPLY);
-        seekbar.getThumb().setColorFilter(getResources().getColor(R.color.design_default_color_primary), PorterDuff.Mode.MULTIPLY);
+        seekbar.getThumb().setColorFilter(getResources().getColor(R.color.design_default_color_secondary_variant), PorterDuff.Mode.MULTIPLY);
 
         //if click on a place of the seekbar, move to that place of the seekbar according to the audio file
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
