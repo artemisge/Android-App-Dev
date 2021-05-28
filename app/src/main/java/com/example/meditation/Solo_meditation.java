@@ -64,7 +64,7 @@ public class Solo_meditation extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.Calendar:
-                        Intent intent1 = new Intent(Solo_meditation.this, Calendar.class);
+                        Intent intent1 = new Intent(Solo_meditation.this, CalendarActivity.class);
                         startActivity(intent1);
                         break;
                     case R.id.Profile:

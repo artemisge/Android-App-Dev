@@ -20,7 +20,7 @@
             android:parentActivityName=".Meditate"/>
         <activity android:name=".Guided_meditation"
             android:parentActivityName=".Meditate"/>
-        <activity android:name=".Calendar" />
+        <activity android:name=".CalendarActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
