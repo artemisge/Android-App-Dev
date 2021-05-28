@@ -19,8 +19,9 @@ public class Meditate extends AppCompatActivity {
         setContentView(R.layout.activity_meditate);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //code for the navbar at the bottom
+        //the same throughout the app
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
-        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -45,6 +46,7 @@ public class Meditate extends AppCompatActivity {
         });
 
         Button guidedButton = (Button)findViewById(R.id.guided_meditation);
+        //move to guided meditation activity
         guidedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,7 @@ public class Meditate extends AppCompatActivity {
         });
 
         Button soloButton = (Button)findViewById(R.id.solo_meditation);
+        //move to solo meditation activity
         soloButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
