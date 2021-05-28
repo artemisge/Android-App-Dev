@@ -12,7 +12,9 @@
         android:dividerHeight="10.0sp"
         android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?actionBarSize"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
