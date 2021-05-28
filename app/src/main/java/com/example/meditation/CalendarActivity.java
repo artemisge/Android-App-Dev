@@ -32,27 +32,6 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calendar);
 
         updateStats();
-        compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
-        compactCalendar.setUseThreeLetterAbbreviation(true);
-
-        List <int[]> intDays = MainActivity.dbHelper.getCalendarDays(); //an array of integers from the db representing the dates which the user meditated
-        int[] currentDay;
-        int day, month, year;
-        Calendar cal = Calendar.getInstance();
-
-        //loop to mark the days on the calendar
-        for(int i=0; i<intDays.size(); i++) {
-            currentDay = intDays.get(i);
-            day = currentDay[0];
-            month = currentDay[1] -1; //-1 is because calendar's months are 0-based while the databases aren't
-            year = currentDay[2];
-            cal.set(year, month, day);
-            Date date = cal.getTime(); //the first getTime is to convert the Calendar object to a Date object
-
-            Event ev = new Event(Color.argb(255, 154, 115, 171),  date.getTime()); //the second getTime is to convert the Date object into an long Epoch
-            compactCalendar.addEvent(ev);
-        }
-
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -89,11 +68,34 @@ public class CalendarActivity extends AppCompatActivity {
         });
     }
 
+    public void updateCalendar(){
+        compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
+        compactCalendar.setUseThreeLetterAbbreviation(true);
+
+        List <int[]> intDays = MainActivity.dbHelper.getCalendarDays(); //an array of integers from the db representing the dates which the user meditated
+        int[] currentDay;
+        int day, month, year;
+        Calendar cal = Calendar.getInstance();
+        
+        //loop to mark the days on the calendar
+        for(int i=0; i<intDays.size(); i++) {
+            currentDay = intDays.get(i);
+            day = currentDay[0];
+            month = currentDay[1] -1; //-1 is because calendar's months are 0-based while the databases aren't
+            year = currentDay[2];
+            cal.set(year, month, day);
+            Date date = cal.getTime(); //the first getTime is to convert the Calendar object to a Date object
+
+            Event ev = new Event(Color.argb(255, 154, 115, 171),  date.getTime()); //the second getTime is to convert the Date object into an long Epoch
+            compactCalendar.addEvent(ev);
+        }
+    }
 
     public void updateStats() {
         // updates the stats on the activity
         TextView streak = (TextView) findViewById(R.id.streak);
         TextView total_time = (TextView) findViewById(R.id.total_days);
+        updateCalendar();
 
         //fetches the data from the db
         streak.setText(Integer.toString(MainActivity.dbHelper.getStreak()));
