@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,7 +93,7 @@ public class PlayActivity extends AppCompatActivity {
                         currentPosition=mediaPlayer.getCurrentPosition();
                         seekbar.setProgress(currentPosition);
                     }
-                    catch (InterruptedException e){
+                    catch (Exception e){
 
                     }
                 }
@@ -213,8 +214,11 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
-        moveTaskToBack(true);
+        Toast.makeText(PlayActivity.this, "yooyoy", Toast.LENGTH_SHORT);
+        //releasePlayer();
+        //super.onBackPressed();
+        //finish();
+        //moveTaskToBack(true);
     }
 
     //method to release the media player
