@@ -19,6 +19,7 @@ import java.util.List;
 
 public class Profile extends AppCompatActivity {
 
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,8 @@ public class Profile extends AppCompatActivity {
         tv.setText(MainActivity.dbHelper.getName());
 
         loadAwards();
+
+        toast = Toast.makeText(Profile.this, "", Toast.LENGTH_SHORT);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
         //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
@@ -104,42 +107,39 @@ public class Profile extends AppCompatActivity {
         week_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "First time meditating: ACHIEVEMENT " + unlock[0], Toast.LENGTH_LONG).show();
+                toast.cancel();
+                toast = Toast.makeText (Profile.this, "First time meditating: ACHIEVEMENT " + unlock[0], Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         ImageView month_straight = findViewById(R.id.three_days);
         month_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "Three days straight meditating: ACHIEVEMENT " + unlock[1], Toast.LENGTH_LONG).show();
+                toast.cancel();
+                toast = Toast.makeText (Profile.this, "Three days straight meditating: ACHIEVEMENT " + unlock[1], Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         ImageView half_hour_straight = findViewById(R.id.one_week);
         half_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One week straight meditating: ACHIEVEMENT " + unlock[2], Toast.LENGTH_LONG).show();
+                toast.cancel();
+                toast = Toast.makeText (Profile.this, "One week straight meditating: ACHIEVEMENT " + unlock[2], Toast.LENGTH_LONG);
+                toast.show();
             }
         });
         ImageView one_hour_straight = findViewById(R.id.one_month);
         one_hour_straight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText (Profile.this, "One month straight meditating: ACHIEVEMENT " + unlock[3], Toast.LENGTH_LONG).show();
+                toast.cancel();
+                toast = Toast.makeText (Profile.this, "One month straight meditating: ACHIEVEMENT " + unlock[3], Toast.LENGTH_LONG);
+                toast.show();
             }
         });
 
-
-        TextView set_reminder = findViewById(R.id.set_reminder);
-        set_reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //String string = MainActivity.dbHelper.getName();
-                //Toast.makeText (Profile.this, "test: ", Toast.LENGTH_SHORT).show();
-                List<int[]> list = MainActivity.dbHelper.getCalendarDays();
-                Toast.makeText (Profile.this, "(TEST) all data: " + list.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
