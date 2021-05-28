@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -174,7 +175,7 @@ public class PlayActivity extends AppCompatActivity {
 
                 mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
 
-                sessionName = mySessions.get(position);
+                sessionName = mySessions.get(position).replace("_"," ");
                 txtname.setText(sessionName);
                 txtname.setSelected(true);
 
@@ -196,7 +197,7 @@ public class PlayActivity extends AppCompatActivity {
                 int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
 
                 mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
-                sessionName = mySessions.get(position);
+                sessionName = mySessions.get(position).replace("_"," ");
                 txtname.setText(sessionName);
                 txtname.setSelected(true);
 
@@ -206,6 +207,14 @@ public class PlayActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        moveTaskToBack(true);
     }
 
     //method to release the media player
@@ -222,7 +231,8 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onStop(){
         super.onStop();
-        releasePlayer();
+        if(!isChangingConfigurations())
+            releasePlayer();
     }
 
 }
