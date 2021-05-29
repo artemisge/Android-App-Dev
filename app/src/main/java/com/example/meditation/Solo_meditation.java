@@ -82,8 +82,11 @@ public class Solo_meditation extends AppCompatActivity {
         myTextViewCountDown = findViewById(R.id.text_view_countdown);
 
         myButtonSet=findViewById(R.id.button_set);
+        myButtonSet.setBackgroundColor(getResources().getColor(R.color.purple_500));
         myButtonStartPause = findViewById(R.id.button_start_pause);
+        myButtonStartPause.setBackgroundColor(getResources().getColor(R.color.purple_500));
         myButtonReset = findViewById(R.id.button_reset);
+        myButtonReset.setBackgroundColor(getResources().getColor(R.color.purple_500));
 
 
 
