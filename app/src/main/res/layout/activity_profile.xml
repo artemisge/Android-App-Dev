@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:fillViewport="true" >
+        android:fillViewport="true"
+        android:layout_marginBottom="?actionBarSize">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -169,36 +170,6 @@
 
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-                tools:layout_editor_absoluteX="0dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="32dp"
-                    android:src="@drawable/ic_baseline_edit_notifications_24" />
-
-                <TextView
-                    android:id="@+id/set_reminder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:clickable="true"
-                    android:fontFamily="cursive"
-                    android:text="Set Reminder"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
             </LinearLayout>
 

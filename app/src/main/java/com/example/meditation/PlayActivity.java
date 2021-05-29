@@ -176,7 +176,7 @@ public class PlayActivity extends AppCompatActivity {
 
                 mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
 
-                sessionName = mySessions.get(position).replace("_"," ");
+                sessionName = formatName(mySessions.get(position));
                 txtname.setText(sessionName);
                 txtname.setSelected(true);
 
@@ -198,7 +198,7 @@ public class PlayActivity extends AppCompatActivity {
                 int resId = getResources().getIdentifier((String) mySessions.get(position), "raw", getPackageName());
 
                 mediaPlayer = MediaPlayer.create(PlayActivity.this,resId);
-                sessionName = mySessions.get(position).replace("_"," ");
+                sessionName = formatName(mySessions.get(position));
                 txtname.setText(sessionName);
                 txtname.setSelected(true);
 
@@ -209,6 +209,13 @@ public class PlayActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private String formatName(String name)
+    {
+        String sName = name.replace("_"," ");
+        sName = sName.substring(0,1).toUpperCase() + sName.substring(1);
+        return sName;
     }
 
     @Override
