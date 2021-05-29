@@ -130,18 +130,13 @@ public class Solo_meditation extends AppCompatActivity {
                 if (myTimerRunning) {
                     pauseTimer();
                 } else {
-                    // check if time in set isn't zero
-                    //String input = myEditTextInput.getText().toString();
-                    //if timer is not running and is not set to 0, timer starts
-                    //if (myStartTimeInMillis != 0) {
-                        startTimer();
+                    startTimer();
 
-                        // add meditation in database if it is the first time meditating
-                        // in that day
-                        String currentDay = simpleDateFormat.format(new Date());
-                        if (!MainActivity.dbHelper.checkDay(currentDay)) {
-                             MainActivity.dbHelper.addMeditation((currentDay));
-
+                    // add meditation in database if it is the first time meditating
+                    // in that day
+                    String currentDay = simpleDateFormat.format(new Date());
+                    if (!MainActivity.dbHelper.checkDay(currentDay)) {
+                        MainActivity.dbHelper.addMeditation((currentDay));
                             try {
                                 MainActivity.dbHelper.updateStreak(currentDay);
                             } catch (ParseException e) {
@@ -150,7 +145,6 @@ public class Solo_meditation extends AppCompatActivity {
 
                             MainActivity.dbHelper.updateAwards();
                         }
-                    //}
                 }
             }
         });
