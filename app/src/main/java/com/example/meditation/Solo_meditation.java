@@ -3,13 +3,10 @@ package com.example.meditation;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
-import android.media.MediaFormat;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -35,7 +32,7 @@ public class Solo_meditation extends AppCompatActivity {
     private Button myButtonStartPause;  //start/pause button
     private Button myButtonReset;  //reset button
 
-    private CountDownTimer mCountDownTimer;
+    private CountDownTimer myCountDownTimer;
     private boolean myTimerRunning; //if the time is running or not
 
     private long myStartTimeInMillis; //start time
@@ -134,9 +131,9 @@ public class Solo_meditation extends AppCompatActivity {
                     pauseTimer();
                 } else {
                     // check if time in set isn't zero
-                    String input = myEditTextInput.getText().toString();
+                    //String input = myEditTextInput.getText().toString();
                     //if timer is not running and is not set to 0, timer starts
-                    if (myStartTimeInMillis != 0) {
+                    //if (myStartTimeInMillis != 0) {
                         startTimer();
 
                         // add meditation in database if it is the first time meditating
@@ -153,7 +150,7 @@ public class Solo_meditation extends AppCompatActivity {
 
                             MainActivity.dbHelper.updateAwards();
                         }
-                    }
+                    //}
                 }
             }
         });
@@ -190,7 +187,7 @@ public class Solo_meditation extends AppCompatActivity {
     private void startTimer() {
         myEndTime = System.currentTimeMillis() + myTimeLeftInMillis;
 
-        mCountDownTimer = new CountDownTimer(myTimeLeftInMillis, 1000) { //the timer will run for as much as the time left and will update every second
+        myCountDownTimer = new CountDownTimer(myTimeLeftInMillis, 1000) { //the timer will run for as much as the time left and will update every second
             @Override
             public void onTick(long millisUntilFinished) {
                 myTimeLeftInMillis = millisUntilFinished;
@@ -216,7 +213,7 @@ public class Solo_meditation extends AppCompatActivity {
 
     //method to pause the timer
     private void pauseTimer() {
-        mCountDownTimer.cancel(); //cancel the timer
+        myCountDownTimer.cancel(); //cancel the timer
         myTimerRunning = false; //time is not running
         updateInterface();
     }
@@ -293,6 +290,12 @@ public class Solo_meditation extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if(myCountDownTimer != null)
+            myCountDownTimer.cancel();
+    }
 
     @Override
     protected void onDestroy() {
