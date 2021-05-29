@@ -26,8 +26,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase myDB){
+        // create user table -> name, days streak, awards
+        // user table will have only one entry the whole time.
+
         myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, DAYS_STRAIGHT INTEGER, AWARD1 INTEGER, AWARD2 INTEGER, AWARD3 INTEGER, AWARD4 INTEGER)");
         myDB.execSQL("CREATE TABLE IF NOT EXISTS MED_STATS(DAY INTEGER, MONTH INTEGER, YEAR INTEGER)");
+
+        // initialize user's name to default etc...
         userInit(myDB);
     }
 
@@ -38,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    // day -> day that the meditation STARTED, not finished
+    // add meditation day -> day that the meditation STARTED, not finished
     public boolean addMeditation(String currentDay){
         int day, month, year;
         String[] cd = currentDay.split("-");
@@ -57,6 +62,8 @@ public class DBHelper extends SQLiteOpenHelper {
         else return true;
     }
 
+    // checks and updates meditation streak, by checking if the user meditated the previous day.
+    // if yes, the streak increases, otherwise streak set to 1.
     public void updateStreak(String currentDay) throws ParseException {
         int streak;
 
@@ -75,7 +82,9 @@ public class DBHelper extends SQLiteOpenHelper {
         int aw2 = cursor.getInt(4);
         int aw3 = cursor.getInt(5);
         int aw4 = cursor.getInt(6);
+        // close database before calling another function that will try to open again the database
         myDB.close();
+
         if (checkDay(previousDay)) {
             // streak ++
             stat1++;
@@ -83,8 +92,9 @@ public class DBHelper extends SQLiteOpenHelper {
             // streak = 1 (only current day)
             stat1 = 1;
         }
+        // open again
         myDB = this.getWritableDatabase();
-
+        // redo the user table with the updated entry
         myDB.execSQL("DROP TABLE IF EXISTS USER");
         myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, DAYS_STRAIGHT INTEGER, AWARD1 INTEGER, AWARD2 INTEGER, AWARD3 INTEGER, AWARD4 INTEGER)");
 
@@ -103,6 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.close();
     }
 
+    // checks meditation streak days and update the awards. "1" for award unlocked
     public void updateAwards() {
         // check streak and update awards
         SQLiteDatabase myDB = this.getWritableDatabase();
@@ -130,7 +141,7 @@ public class DBHelper extends SQLiteOpenHelper {
             aw4 = 1;
         }
 
-
+        // update user table
         myDB.execSQL("DROP TABLE IF EXISTS USER");
         myDB.execSQL("CREATE TABLE IF NOT EXISTS USER(ID INTEGER, NAME TEXT, DAYS_STRAIGHT INTEGER, AWARD1 INTEGER, AWARD2 INTEGER, AWARD3 INTEGER, AWARD4 INTEGER)");
 
@@ -150,31 +161,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    // checks if user has already meditated during that day.
+    // returns true, if user has meditated, false otherwise.
     public boolean checkDay(String currentDay) {
         int day, month, year;
         String[] cd = currentDay.split("-");
         day = Integer.parseInt(cd[1]);
         month = Integer.parseInt(cd[0]);
         year = Integer.parseInt(cd[2]);
-        System.out.println(year);
 
         SQLiteDatabase myDB = this.getReadableDatabase();
         String queryString = "SELECT * FROM MED_STATS WHERE DAY = " +  day + " AND MONTH = " + month + " AND YEAR = " + year;;
         Cursor cursor = myDB.rawQuery(queryString, null);
+
+        // if there is an entry of that day in database
         if (cursor.moveToFirst()) {
             cursor.close();
             myDB.close();
-            System.out.println("truueee check");
             return true;
             // day already inserted
         }
-        System.out.println("false check");
+        // day not already inserted, so we can go ahead and add a meditation later
         cursor.close();
         myDB.close();
         return false;
     }
 
-
+    // return a boolean array of awards. true -> award unlocked. false -> award locked
+    // it is used in profile to load or not the corresponding icons of each award
     public boolean[] loadAwards() {
         // check database
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -191,7 +205,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return unlocked;
     }
 
-
+    // initialize user's name, streak and awards
     public void userInit(SQLiteDatabase myDB) {
 
         ContentValues contentValues = new ContentValues();
@@ -204,11 +218,9 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("AWARD4", 0);
 
         myDB.insert("USER",null,contentValues);
-
-        //myDB.close();
     }
 
-    // change user local name
+    // change user local name that shows in profile
     public void setName(String name) {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
@@ -242,6 +254,7 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.close();
     }
 
+    // returns user's name
     public String getName() {
         String name;
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -283,6 +296,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
+    // IGNORE: test function to help with developing
+    // clears database
     public void clearDatabase() {
         SQLiteDatabase myDB = this.getWritableDatabase();
 
@@ -296,6 +311,7 @@ public class DBHelper extends SQLiteOpenHelper {
         myDB.close();
     }
 
+    // returns streak
     public int getStreak() {
         int streak;
         SQLiteDatabase myDB = this.getReadableDatabase();
@@ -310,6 +326,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return streak;
     }
 
+    // returns total meditation entries -> total days meditating
     public int getTotalDays() {
         SQLiteDatabase myDB = this.getReadableDatabase();
 
