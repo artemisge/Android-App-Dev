@@ -17,13 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Field;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Guided_meditation extends AppCompatActivity {
 
     ListView listView;
     ArrayList arrayList, names;
     ArrayAdapter myAdapter;
+
+    //pass this to calendar
+    String pattern = "MM-dd-yyyy";
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
     //for the navbar at the bottom
     //same throughout the app
@@ -80,6 +87,22 @@ public class Guided_meditation extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String meditation_name = listView.getItemAtPosition(position).toString(); //get the name of the chosen meditation session to pass it to PlayActivity
+
+                // add meditation in database if it is the first time meditating
+                // in that day
+                String currentDay = simpleDateFormat.format(new Date());
+                if (!MainActivity.dbHelper.checkDay(currentDay)) {
+                    MainActivity.dbHelper.addMeditation((currentDay));
+
+                    try {
+                        MainActivity.dbHelper.updateStreak(currentDay);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    MainActivity.dbHelper.updateAwards();
+                }
+
                 startActivity(new Intent(Guided_meditation.this, PlayActivity.class)
 
                         .putExtra("pos", position).putExtra("sessions", arrayList).putExtra("session_name", meditation_name));
