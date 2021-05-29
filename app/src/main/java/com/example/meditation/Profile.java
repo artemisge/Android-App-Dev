@@ -56,6 +56,7 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        // EDIT NAME: set EditText viewable and editable. "Edit" icon disappears, "done" icon appears.
         ImageButton edit_name = findViewById(R.id.edit_name);
         edit_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +72,8 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+        // When "done" icon is pressed, new name gets saved in db, "done" icon disappears and "edit" icon appears.
+        // Toast appears with new name. EditText now uneditable.
         ImageButton edit_name_done = findViewById(R.id.edit_name_done);
         edit_name_done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,14 +98,9 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        TextView awards = findViewById(R.id.awards);
-        awards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
-        // AWARDS
+        // AWARDS TOASTS
+        // a toast is cancelled if a new toast is pressed
         ImageView week_straight = findViewById(R.id.one_day);
         week_straight.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +141,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    // load awards from database. Load corresponding icons if award unlocked.
     String[] unlock = {"LOCKED", "LOCKED", "LOCKED", "LOCKED"};
     public void loadAwards() {
         ImageView iv1 = findViewById(R.id.one_day);
