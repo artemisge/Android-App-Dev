@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(MainActivity.this, Profile.class);
                         startActivity(intent2);
                         break;
-                    case R.id.Home:
-                        //Intent intent3 = new Intent(MainActivity.this, Home.class);
-                        //startActivity(intent3);
-                        break;
                 }
 
                 return false;
@@ -52,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // go to meditation menu activity
         ImageButton lotusButton = findViewById(R.id.lotus_button);
         lotusButton.setOnClickListener(new View.OnClickListener() {
             @Override
