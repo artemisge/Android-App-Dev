@@ -30,10 +30,10 @@ public class Profile extends AppCompatActivity {
 
         loadAwards();
 
+        // initialize a toast instance, so it can be cancelled and called anew.
         toast = Toast.makeText(Profile.this, "", Toast.LENGTH_SHORT);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.menu);
-        //BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
