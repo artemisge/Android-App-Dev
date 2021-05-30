@@ -43,7 +43,7 @@
             android:layout_marginTop="112dp"
             android:scaleX="3"
             android:scaleY="3"
-            android:src="@mipmap/lotus"
+            android:src="@mipmap/lotus_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

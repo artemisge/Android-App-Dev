@@ -12,7 +12,6 @@
         android:theme="@style/Theme.Meditation">
         <activity android:name=".PlayActivity"
             android:parentActivityName=".Guided_meditation"/>
-        <activity android:name=".Welcome"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".Meditate"
             android:parentActivityName=".MainActivity"/>

@@ -48,7 +48,7 @@
                 android:layout_width="234dp"
                 android:layout_height="208dp"
                 android:layout_marginBottom="8dp"
-                app:srcCompat="@mipmap/lotus" />
+                app:srcCompat="@mipmap/lotus_icon" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
