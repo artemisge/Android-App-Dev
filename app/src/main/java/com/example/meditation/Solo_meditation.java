@@ -242,7 +242,7 @@ public class Solo_meditation extends AppCompatActivity {
 
     //updates the buttons and edit texts
     private void updateInterface() {
-        if (myTimerRunning) {
+        if (myTimerRunning) {  //if time is running
             myEditTextInput.setVisibility(View.INVISIBLE);
             myButtonSet.setVisibility(View.INVISIBLE);
             myButtonReset.setVisibility(View.INVISIBLE);
@@ -251,7 +251,7 @@ public class Solo_meditation extends AppCompatActivity {
             myEditTextInput.setVisibility(View.VISIBLE);
             myButtonSet.setVisibility(View.VISIBLE);
             myButtonStartPause.setText("Start");
-            if (myTimeLeftInMillis < 1000) {
+            if (myTimeLeftInMillis < 1000) {   //if less than one second is left, time is ending and start button is invisible
                 myButtonStartPause.setVisibility(View.INVISIBLE);
             } else {
                 myButtonStartPause.setVisibility(View.VISIBLE);
