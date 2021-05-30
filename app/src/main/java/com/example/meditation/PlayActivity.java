@@ -218,15 +218,6 @@ public class PlayActivity extends AppCompatActivity {
         return sName;
     }
 
-    @Override
-    public void onBackPressed()
-    {
-        Toast.makeText(PlayActivity.this, "yooyoy", Toast.LENGTH_SHORT);
-        //releasePlayer();
-        //super.onBackPressed();
-        //finish();
-        //moveTaskToBack(true);
-    }
 
     //method to release the media player
     private void releasePlayer()
